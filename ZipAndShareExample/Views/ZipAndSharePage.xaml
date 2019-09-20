@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZipAndShareExample.Views.ZipAndSharePage"
+             xmlns:vm="clr-namespace:ZipAndShareExample.ViewModels"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:ZipAndShareViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid CompressedLayout.IsHeadless="True">
+            <Grid Padding="16"
+                  CompressedLayout.IsHeadless="True">
+                <Button Text="Zip and Share"
+                        Command="{Binding ZipAndShareCommand}"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        TextColor="White"
+                        VerticalOptions="Start"
+                        HeightRequest="44" />
+            </Grid>
+            <BoxView BackgroundColor="{StaticResource TextMediumColor}"
+                     Opacity="0.4"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     IsVisible="{Binding IsBusy}" />
+            <Frame HasShadow="false"
+                   HeightRequest="100"
+                   WidthRequest="240"
+                   IsVisible="{Binding IsBusy}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   CornerRadius="10">
+                <Grid>
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" />
+                    <Label Text="{Binding StatusMessage}"
+                           HeightRequest="20"
+                           TextColor="{StaticResource PrimaryColor}"
+                           HorizontalTextAlignment="Center"
+                           TranslationY="40"
+                           VerticalOptions="Center"
+                           HorizontalOptions="FillAndExpand" />
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
